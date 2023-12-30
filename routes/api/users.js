@@ -12,7 +12,7 @@ const User = require('../../models/User')
 // @route    Get api/users
 // @desc     Retrieve user
 // @access   Protected
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
        const user = await User.findById(req.user.id).select('-password')
        res.json(user)
@@ -35,7 +35,7 @@ async (req, res) => {
     if(!errors.isEmpty()){
         return res.status(400).json({errors: errors.array()})
     }
-
+    console.log(errors)
     const {name, email, password} = req.body
 
     try {
